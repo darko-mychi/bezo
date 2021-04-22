@@ -1,5 +1,6 @@
 import { RequestHandler } from "express";
 import Responder from "@/lib/responder";
+import Auth from "@/lib/core/Auth";
 import User from "../models/user.model";
 
 export default class AuthController {
@@ -8,8 +9,9 @@ export default class AuthController {
 
         try {
             const user = await User.create({ phone, password });
+            const token = Auth.createToken(user._id);
             
-            Responder.success(res, user);
+            Responder.success(res, { token });
         } catch (error) {
             console.log(error.message, error.code);
 

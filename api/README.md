@@ -8,6 +8,8 @@ To get up and running:
 - Make a copy of the `.env.example` to `.env`, you can change the values to match your preference.
 - Run the project with `yarn dev` to start the server.
 
+*don't forget to run your mongo server. You can also use the env variables to connect to atlas if you prefer that.*
+
 This project is modelled after the popular ruby on rails/laravel setup. All project routes, controllers and models can be found in the `app` directory. `lib` holds some important libraries which aren't exactly part of the app, ...
 
 ## dependencies

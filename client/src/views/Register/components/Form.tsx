@@ -83,7 +83,7 @@ const Form = () => {
             className="register-page__form"
         >
             <h2 className="register-page__form__title">Register an account.</h2>
-            <div className="form-group flex-col mt:_2">
+            <div className="form-group flex-col mt:_3">
                 <label>Phone</label>
                 <input
                     type="text"
@@ -94,7 +94,7 @@ const Form = () => {
                 />
                 <small className="form-errors">{errors.phone}</small>
             </div>
-            <div className="form-group flex-col mt:_1">
+            <div className="form-group flex-col mt:_2">
                 <label>Password</label>
                 <input
                     type="text"

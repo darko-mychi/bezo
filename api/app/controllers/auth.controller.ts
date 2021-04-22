@@ -13,7 +13,20 @@ export default class AuthController {
         } catch (error) {
             console.log(error.message, error.code);
 
-            Responder.error(res, "An error occured!");
+            const errors: any = {};
+
+            if (error.message.includes("user validation failed")) {
+                Object.values(error.errors).forEach(({ properties }: any) => {
+                    const { path, message } = properties;
+                    errors[path] = message;
+                });
+            }
+
+            if (error.code === 11000) {
+                errors.phone = "Phone number already registered!";
+            }
+
+            Responder.error(res, errors);
         }
     };
 }

@@ -5,6 +5,7 @@ import reportWebVitals from './config/reportWebVitals';
 import Register from './views/Register/Register';
 
 import './assets/scss/index.scss';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.render(
   <React.StrictMode>

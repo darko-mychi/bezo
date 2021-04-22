@@ -1,7 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import Button from "../../../components/Button";
-import { API_URL } from "../../../config/constants";
+import { $post } from "../../../utils/fetch";
 import useInput from "../../../utils/hooks/useInput";
 
 const Form = () => {
@@ -49,17 +49,30 @@ const Form = () => {
 
         const data = { phone, password };
 
-        axios.post(`${API_URL}/auth/register`, data).then((res) => {
+        $post("auth/register", data).then((res: any) => {
             if (res.data.status === "success") {
                 const { token } = res.data.data;
 
                 // save token in storage
                 window.localStorage["token"] = token;
+
+                toast.success(`Your account has been created, welcome to the bezo family!`);
+            }
+
+            if (res.data.status === "error") {
+                const errors = res.data.data;
+                const errorKeys = Object.keys(errors);
+
+                errorKeys.forEach((key) => {
+                    toast.error(errors[key]);
+                });
             }
 
             setLoading(false);
         }).catch((err) => {
             console.log(err);
+            toast.error("An error occured, our team has been notified!");
+
             setLoading(false);
         });
     };
